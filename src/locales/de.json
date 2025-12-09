@@ -1,0 +1,31 @@
+{
+    "languageToggle": "Sprache wechseln",
+    "timer": {
+        "title": "Timer",
+        "start": "Starten",
+        "pause": "Pause",
+        "reset": "Zurücksetzen",
+        "focus": "Fokus",
+        "shortBreak": "Kurze Pause",
+        "longBreak": "Lange Pause",
+        "modeSelected": "Modusauswahl",
+        "remaining":" Verbleibende Zeit"
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "minutes": "Minuten",
+      "openSettings": "Einstellungen öffnen",
+      "appearance": "Aussehen",
+      "behavior": "Verhalten",
+      "autoStartPomodoros": "Pomodoro-Sitzungen automatisch starten",
+      "autoStartBreaks": "Pausen automatisch starten",
+      "sound": "Sound",
+      "soundOn": "Sound an",
+      "volume": "Lautstärke",
+      "timerDurations": "Timer-Dauern",
+      "pomodoro": "Pomodoro",
+      "shortBreak": "Kurze Pause",
+      "longBreak": "Lange Pause",
+      "longBreakInterval": "Intervall für lange Pausen"
+    }
+}

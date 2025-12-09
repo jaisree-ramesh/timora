@@ -1,0 +1,32 @@
+{
+    "languageToggle": "Toggle language",
+    "timer": {
+        "title": "Timer",
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset",
+        "focus": "Focus",
+        "shortBreak": "Short Break",
+        "longBreak": "Long Break",
+        "modeSelected": "Mode selector",
+        "remaining":" Remaining time"
+    },
+    "settings": {
+      "title": "Settings",
+      "minutes": "Minutes",
+      "openSettings": "Open Settings",
+      "appearance": "Appearance",
+      "behavior": "Behavior",
+      "autoStartPomodoros": "Auto-start Pomodoro Sessions",
+      "autoStartBreaks": "Auto-start Breaks",
+      "sound": "Sound",
+      "soundOn": "Sound On",
+      "volume": "Volume",
+      "timerDurations": "Timer Durations",
+      "pomodoro": "Pomodoro",
+      "shortBreak": "Short Break",
+      "longBreak": "Long Break",
+      "longBreakInterval": "Long Break Interval"
+
+    }
+}
