@@ -1,27 +1,23 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export interface ITodo {
+export interface TodoItem {
   id: string;
-  title: string;
+  text: string;
   completed: boolean;
   createdAt: number;
-  deleted: boolean; // soft delete for undo
 }
 
 interface TodoState {
-  todos: ITodo[];
+  todos: TodoItem[];
 
   actions: {
-    addTodo: (title: string) => { success: boolean; error?: string };
-    toggleTodo: (id: string) => { success: boolean; error?: string };
-    editTodo: (
-      id: string,
-      title: string
-    ) => { success: boolean; error?: string };
-    deleteTodo: (id: string) => { success: boolean; error?: string };
-    restoreTodo: (id: string) => { success: boolean; error?: string };
-    clearCompleted: () => { success: boolean };
+    addTodo: (text: string) => void;
+    toggleTodo: (id: string) => void;
+    editTodo: (id: string, text: string) => void;
+    deleteTodo: (id: string) => void;
+    clearCompleted: () => void;
+    reorderTodos: (from: number, to: number) => void;
   };
 }
 
@@ -31,97 +27,64 @@ export const useTodoStore = create<TodoState>()(
       todos: [],
 
       actions: {
-        addTodo: (title) => {
-          const clean = title.trim();
-          if (!clean) return { success: false, error: "Todo cannot be empty." };
-
-          const newTodo: ITodo = {
+        /** ADD */
+        addTodo: (text) => {
+          const newTodo: TodoItem = {
             id: crypto.randomUUID(),
-            title: clean,
+            text,
             completed: false,
             createdAt: Date.now(),
-            deleted: false,
           };
 
-          set({ todos: [...get().todos, newTodo] });
-          return { success: true };
+          set({
+            todos: [...get().todos, newTodo],
+          });
         },
 
+        /** TOGGLE COMPLETE */
         toggleTodo: (id) => {
-          const state = get();
-          const exists = state.todos.find((t) => t.id === id);
-          if (!exists) return { success: false, error: "Todo not found." };
-
           set({
-            todos: state.todos.map((t) =>
-              t.id === id ? { ...t, completed: !t.completed } : t
+            todos: get().todos.map((todo) =>
+              todo.id === id ? { ...todo, completed: !todo.completed } : todo
             ),
           });
-
-          return { success: true };
         },
 
-        editTodo: (id, title) => {
-          const clean = title.trim();
-          if (!clean)
-            return { success: false, error: "New title cannot be empty." };
-
-          const state = get();
-          const exists = state.todos.find((t) => t.id === id);
-
-          if (!exists) 
-            return { success: false, error: "Todo not found." };
-
+        /** EDIT TODO TEXT */
+        editTodo: (id, text) => {
           set({
-            todos: state.todos.map((t) =>
-              t.id === id ? { ...t, title: clean } : t
+            todos: get().todos.map((todo) =>
+              todo.id === id ? { ...todo, text } : todo
             ),
           });
-
-          return { success: true };
         },
 
+        /** DELETE TODO */
         deleteTodo: (id) => {
-          const state = get();
-          const exists = state.todos.find((t) => t.id === id);
-          if (!exists) return { success: false, error: "Todo not found." };
-
-          // Soft delete
           set({
-            todos: state.todos.map((t) =>
-              t.id === id ? { ...t, deleted: true } : t
-            ),
+            todos: get().todos.filter((todo) => todo.id !== id),
           });
-
-          return { success: true };
         },
 
-        restoreTodo: (id) => {
-          const state = get();
-          const exists = state.todos.find((t) => t.id === id);
-          if (!exists) return { success: false, error: "Todo not found." };
-
-          set({
-            todos: state.todos.map((t) =>
-              t.id === id ? { ...t, deleted: false } : t
-            ),
-          });
-
-          return { success: true };
-        },
-
+        /** CLEAR COMPLETED TASKS */
         clearCompleted: () => {
           set({
-            todos: get().todos.filter(
-              (t) => !t.completed || t.deleted // keep deleted to allow undo
-            ),
+            todos: get().todos.filter((todo) => !todo.completed),
           });
-          return { success: true };
+        },
+
+        /** DRAG-AND-DROP REORDERING */
+        reorderTodos: (from, to) => {
+          const list = [...get().todos];
+          const [moved] = list.splice(from, 1);
+          list.splice(to, 0, moved);
+
+          set({ todos: list });
         },
       },
     }),
     {
-      name: "timora-todos",
+      name: "timora-todo",
     }
   )
 );

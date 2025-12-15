@@ -2,68 +2,86 @@
 @import "tailwindcss/theme";
 
 @layer base {
-  :root {
-    --radius: 12px;
-    --background: #ffffff;
-    --foreground: #1a1a1a;
-    --card: #ffffff;
-    --card-foreground: #1a1a1a;
-    --popover: #ffffff;
-    --popover-foreground: #1a1a1a;
-    --primary: #6b46c1; /* purple */
-    --primary-foreground: #ffffff;
-    --secondary: #f3e8ff; /* soft lavender */
-    --secondary-foreground: #4b0082;
-    --muted: #f6f6f6;
-    --muted-foreground: #666666;
-    --accent: #e9d5ff;
-    --accent-foreground: #4b0082;
-    --destructive: #ff4d4d;
-    --border: #6b46c1;
-    --input: #e5e5e5;
-    --ring: #6b46c1;
-  }
+ :root {
+  --radius: 12px;
+  --background: #ffd0ae; /* soft warm cream */
+  --foreground: #331a00; /* deep warm brown */
+  --card: #fff1db; /* soft parchment / warm paper */
+  --card-foreground: #331a00;
+  --popover: #fff1db;
+  --popover-foreground: #331a00;
+  --primary: #cc5803; /* Bronze Spice */
+  --primary-foreground: #ffffff;
+  --secondary: #ffc971; /* Sunflower Gold */
+  --secondary-foreground: #4b2e00;
+  --muted: #ffe8c6;
+  --muted-foreground: #7a5a38;
+  --accent: #ffb627; /* Amber Flame */
+  --accent-foreground: #4b2e00;
+  --destructive: #ff4d4d;
+  --border: #e2711d; /* Autumn Leaf */
+  --input: #ffe2c2;
+  --ring: #ff9505; /* Deep Saffron */
+  --chart-1: #cc5803;
+  --chart-2: #e2711d;
+  --chart-3: #ff9505;
+  --chart-muted: #ffe5cc;
+  --chart-label: #331a00;
+}
 
   /*DARK THEME*/
-  .dark {
-    --background: #0e0e11;
-    --foreground: #f5f5f5;
-    --card: #1a1a1e;
-    --card-foreground: #f5f5f5;
-    --popover: #1a1a1e;
-    --popover-foreground: #f5f5f5;
-    --primary: #b794f4; /* soft purple */
-    --primary-foreground: #1a1a1a;
-    --secondary: #2d2d33;
-    --secondary-foreground: #f5f5f5;
-    --muted: #2d2d33;
-    --muted-foreground: #a1a1aa;
-    --accent: #3b3b44;
-    --accent-foreground: #ffffff;
-    --destructive: #ff6b6b;
-    --border: #2e2e33;
-    --input: #2e2e33;
-    --ring: #b794f4;
-  }
+.dark {
+  /* Core Surface Colors */
+  --background: #00132d;            /* Deep Prussian Blue */
+  --foreground: #e6ecff;            /* Soft blue-white text */
+  --card: #00193b;                  /* Slightly lighter panel */
+  --card-foreground: #e6ecff;
+  --popover: #001e45;
+  --popover-foreground: #e6ecff;
+  --primary: #4e7cff;               /* Accessible bright blue accent */
+  --primary-foreground: #ffffff;
+  --secondary: #002657;             /* Oxford Navy */
+  --secondary-foreground: #e6ecff;
+  --muted: #001e45;
+  --muted-foreground: #9fb0d3;      /* Muted bluish-gray */
+  --accent: #00377e;                /* Regal Navy */
+  --accent-foreground: #e6ecff;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #1a1a1a;
+  --border: #002657;                /* Visible but subtle */
+  --input: #002657;
+  --ring: #4e7cff;
+  --chart-1: #4e7cff;  /* Primary blue bar */
+  --chart-2: #6a90ff;  /* Lighter blue */
+  --chart-3: #8fb0ff;  /* Soft pastel blue */
+  --chart-muted: #001e45;
+  --chart-label: #e6ecff;
+}
 
   /* PASTEL THEME */
-  .pastel {
-    --background: #f6f0ff; /* lavender pastel */
-    --foreground: #4a3b6d;
-    --card: #ffffff;
-    --card-foreground: #4a3b6d;
-    --primary: #d7b5ff; /* purple pastel */
-    --primary-foreground: #3a1d5e;
-    --secondary: #ffd5c8; /* peach pastel */
-    --secondary-foreground: #7a3a2e;
-    --muted: #f1e8ff;
-    --muted-foreground: #8269b8;
-    --accent: #ffd5c8;
-    --accent-foreground: #7a3a2e;
-    --border: #e3d7ff;
-    --input: #e3d7ff;
-    --ring: #c1a2f8;
-  }
+.pastel {
+  --background: #e1d8f7;
+  --foreground: #a581f8;
+  --card:  #f6f0ff;
+  --card-foreground: #4a3b6d;
+  --primary: #c0a7eb; /* Wisteria */
+  --primary-foreground: #3a1d5e;
+  --secondary: #e1d8f7; /* Lavender */
+  --secondary-foreground: #4a3b6d;
+  --muted: #d7c8f3; /* Periwinkle */
+  --muted-foreground: #4a3b6d
+  --accent: #d0bef2; /* Periwinkle */
+  --accent-foreground: #3a1d5e;
+  --border: #d7c8f3;
+  --input: #d7c8f3;
+  --ring: #b596e5;
+  --chart-1: #b596e5; /* strongest purple */
+  --chart-2: #c0a7eb; 
+  --chart-3: #d0bef2;
+  --chart-4: #d7c8f3;
+  --chart-muted: #e1d8f7;
+  --chart-label: #4a3b6d; /* dark lavender for label text */
+}
 }
 
 @theme {

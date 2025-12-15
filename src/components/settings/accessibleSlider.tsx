@@ -1,6 +1,5 @@
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
-import { useTranslation } from "react-i18next";
 
 interface ISliderProps {
   id: string;
@@ -9,23 +8,29 @@ interface ISliderProps {
   min: number;
   max: number;
   step?: number;
+  unit?: string;
   onChange: (value: number) => void;
 }
 
 const AccessibleSlider = (props: ISliderProps) => {
-  const { t } = useTranslation();
-  return (  
+  return (
     <div>
-      <Label
-        className="text-muted-foreground font-normal text-sm"
-        htmlFor={props.id}
-      >
-        {props.label}
-      </Label>
+      <div className="flex items-center justify-between">
+        <Label
+          className="text-muted-foreground font-normal text-sm"
+          htmlFor={props.id}
+        >
+          {props.label}
+        </Label>
+        <span className="text-sm font-medium tabular-nums text-primary">
+          {props.value}
+          {props.unit ? ` ${props.unit}` : ""}
+        </span>
+      </div>
       <Slider
         id={props.id}
         aria-labelledby={props.id}
-        aria-valuetext={`${props.value} ${t("settings.minutes", "minutes")}`}
+        aria-valuetext={`${props.value} ${props.unit ? props.unit : ""}`}
         value={[props.value]}
         min={props.min}
         max={props.max}
@@ -34,6 +39,6 @@ const AccessibleSlider = (props: ISliderProps) => {
         className="mt-3 cursor-pointer"
       />
     </div>
-  );  
+  );
 };
 export default AccessibleSlider;

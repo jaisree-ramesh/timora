@@ -31,7 +31,7 @@ export function ModeIndicator() {
 
   return (
     <div
-      className="flex items-center justify-center gap-3 my-4"
+      className="flex items-center justify-center gap-3"
       role="tablist"
       aria-label={t("timer.modeSelector")}
     >

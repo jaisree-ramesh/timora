@@ -75,7 +75,7 @@ export function SettingsPanel() {
               onChange={actions.toggleAutoStartBreaks}
             />
           </fieldset>
-          <Separator className="mb-3"/>
+          <Separator className="mb-3" />
 
           {/* SOUND */}
           <fieldset className="space-y-6">
@@ -93,11 +93,12 @@ export function SettingsPanel() {
             <AccessibleSlider
               id="volume-slider"
               label={`${t("settings.volume")}: ${(volume * 100).toFixed(0)}%`}
-              value={volume}
+              value={Math.round(volume * 100)}
               min={0}
-              max={1}
-              step={0.01}
-              onChange={actions.setVolume}
+              max={100}
+              step={1}
+              onChange={(v) => actions.setVolume(v / 100)}
+              unit="%"
             />
           </fieldset>
         </div>
@@ -125,6 +126,7 @@ export function SettingsPanel() {
               min={1}
               max={30}
               onChange={actions.setShortBreak}
+              unit={t("settings.min")}
             />
 
             <AccessibleSlider
@@ -134,6 +136,7 @@ export function SettingsPanel() {
               min={5}
               max={60}
               onChange={actions.setLongBreak}
+              unit={t("settings.min")}
             />
 
             <AccessibleSlider
@@ -143,6 +146,7 @@ export function SettingsPanel() {
               min={1}
               max={10}
               onChange={actions.setLongBreakInterval}
+              unit={t("settings.sessions")}
             />
           </fieldset>
         </div>

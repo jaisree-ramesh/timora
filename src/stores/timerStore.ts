@@ -1,14 +1,13 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import { useSettingsStore } from "./settingStore";
-import { useStatsStore } from "./statStore";
+import { useStatsStore } from "./statsStore";
 import type { TimerMode } from "../types/type";
 
 interface TimerState {
   mode: TimerMode;
   secondsLeft: number;
   isRunning: boolean;
-  cycles: number; // counts number of pomodoros completed until long break
+  cycles: number;
 
   actions: {
     start: () => void;
@@ -19,95 +18,82 @@ interface TimerState {
   };
 }
 
-export const useTimerStore = create<TimerState>()(
-  persist(
-    (set, get) => ({
-      mode: "focus",
-      isRunning: false,
-      secondsLeft: useSettingsStore.getState().pomodoroDuration * 60,
-      cycles: 0,
+export const useTimerStore = create<TimerState>((set, get) => ({
+  mode: "focus",
+  isRunning: false,
+  secondsLeft: useSettingsStore.getState().pomodoroDuration * 60,
+  cycles: 0,
 
-      actions: {
-        start: () => set({ isRunning: true }),
-        pause: () => set({ isRunning: false }),
+  actions: {
+    start: () => set({ isRunning: true }),
+    pause: () => set({ isRunning: false }),
+    reset: () => {
+      const settings = useSettingsStore.getState();
+      const mode = get().mode;
 
-        reset: () => {
-          const settings = useSettingsStore.getState();
-          const mode = get().mode;
+      const duration =
+        mode === "focus"
+          ? settings.pomodoroDuration
+          : mode === "shortBreak"
+          ? settings.shortBreak
+          : settings.longBreak;
 
-          const duration =
-            mode === "focus"
-              ? settings.pomodoroDuration
-              : mode === "shortBreak"
-              ? settings.shortBreak
-              : settings.longBreak;
+      set({
+        secondsLeft: duration * 60,
+        isRunning: false,
+      });
+    },
 
-          set({
-            secondsLeft: duration * 60,
-            isRunning: false,
-          });
-        },
+    switchMode: (newMode) => {
+      const settings = useSettingsStore.getState();
 
-        switchMode: (newMode) => {
-          const settings = useSettingsStore.getState();
+      const duration =
+        newMode === "focus"
+          ? settings.pomodoroDuration
+          : newMode === "shortBreak"
+          ? settings.shortBreak
+          : settings.longBreak;
 
-          const duration =
-            newMode === "focus"
-              ? settings.pomodoroDuration
-              : newMode === "shortBreak"
-              ? settings.shortBreak
-              : settings.longBreak;
+      set({
+        mode: newMode,
+        secondsLeft: duration * 60,
+        isRunning: false,
+      });
+    },
 
-          set({
-            mode: newMode,
-            isRunning: false,
-            secondsLeft: duration * 60,
-          });
-        },
+    tick: () => {
+      const state = get();
+      if (!state.isRunning) return;
 
-        tick: () => {
-          const state = get();
-          if (!state.isRunning) return;
+      if (state.secondsLeft > 1) {
+        set({ secondsLeft: state.secondsLeft - 1 });
+        return;
+      }
 
-          // If timer still has more than 1 second → just decrement
-          if (state.secondsLeft > 1) {
-            set({ secondsLeft: state.secondsLeft - 1 });
-            return;
-          }
+      // Timer finished
+      set({ secondsLeft: 0, isRunning: false });
 
-          // Handle the last second (1 → 0)
-          if (state.secondsLeft === 1) {
-            set({ secondsLeft: 0 });
-          }
+      const stats = useStatsStore.getState().actions;
+      const settings = useSettingsStore.getState();
 
-          // NOW the timer has finished → run finishing logic
-          const stats = useStatsStore.getState().actions;
+      if (state.mode === "focus") {
+        stats.addSession(settings.pomodoroDuration);
 
-          if (state.mode === "focus") {
-            // Record stats
-            stats.addSession(useSettingsStore.getState().pomodoroDuration);
+        const nextCycle = state.cycles + 1;
 
-            const nextCycle = state.cycles + 1;
-
-            if (nextCycle >= 4) {
-              // Switch to long break
-              set({ cycles: 0 });
-              get().actions.switchMode("longBreak");
-            } else {
-              // Switch to short break
-              set({ cycles: nextCycle });
-              get().actions.switchMode("shortBreak");
-            }
-          } else {
-            // break finished → go back to focus mode
-            get().actions.switchMode("focus");
-          }
-        },
-      },
-    }),
-    { name: "timora-timer" }
-  )
-);
+        if (nextCycle >= 4) {
+          set({ cycles: 0 });
+          get().actions.switchMode("longBreak");
+        } else {
+          set({ cycles: nextCycle });
+          get().actions.switchMode("shortBreak");
+        }
+      } else {
+        get().actions.switchMode("focus");
+      }
+    },
+  },
+}));
 
 export const useTimer = () => useTimerStore((s) => s);
 export const useTimerActions = () => useTimerStore((s) => s.actions);

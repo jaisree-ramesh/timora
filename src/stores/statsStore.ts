@@ -1,4 +1,3 @@
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -10,7 +9,7 @@ interface DayStats {
 interface StatsState {
   totalMinutes: number;
   totalSessions: number;
-  streak: number; // days in a row
+  streak: number;
   lastActiveDate: string | null;
   history: Record<string, DayStats>;
 
@@ -18,6 +17,14 @@ interface StatsState {
     addSession: (minutes: number) => void;
     resetStats: () => void;
   };
+}
+
+function todayISO() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function yesterdayISO() {
+  return new Date(Date.now() - 86400000).toISOString().slice(0, 10);
 }
 
 export const useStatsStore = create<StatsState>()(
@@ -31,40 +38,38 @@ export const useStatsStore = create<StatsState>()(
 
       actions: {
         addSession: (minutes) => {
-          const today = new Date().toISOString().slice(0, 10);
+          const today = todayISO();
+          const yesterday = yesterdayISO();
           const state = get();
 
-          const yesterday = new Date(Date.now() - 86400000)
-            .toISOString()
-            .slice(0, 10);
+          // ─── STREAK LOGIC ───
+          let newStreak = 1;
 
-          // Streak logic
-          let newStreak = state.streak;
           if (state.lastActiveDate === today) {
-            // already counted today → streak stays same
+            newStreak = state.streak; // already counted today
           } else if (state.lastActiveDate === yesterday) {
-            newStreak += 1; // consecutive day
-          } else {
-            newStreak = 1; // reset streak
+            newStreak = state.streak + 1;
           }
 
-          // Update today's stats
-          const todayStats = state.history[today] || {
+          // ─── TODAY STATS ───
+          const prevDay = state.history[today] ?? {
             minutes: 0,
             sessions: 0,
           };
 
-          todayStats.minutes += minutes;
-          todayStats.sessions += 1;
+          const updatedDay: DayStats = {
+            minutes: prevDay.minutes + minutes,
+            sessions: prevDay.sessions + 1,
+          };
 
           set({
             totalMinutes: state.totalMinutes + minutes,
             totalSessions: state.totalSessions + 1,
-            lastActiveDate: today,
             streak: newStreak,
+            lastActiveDate: today,
             history: {
               ...state.history,
-              [today]: todayStats,
+              [today]: updatedDay,
             },
           });
         },

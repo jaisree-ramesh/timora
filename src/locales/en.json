@@ -1,32 +1,57 @@
 {
-    "languageToggle": "Toggle language",
-    "timer": {
-        "title": "Timer",
-        "start": "Start",
-        "pause": "Pause",
-        "reset": "Reset",
-        "focus": "Focus",
-        "shortBreak": "Short Break",
-        "longBreak": "Long Break",
-        "modeSelected": "Mode selector",
-        "remaining":" Remaining time"
-    },
-    "settings": {
-      "title": "Settings",
-      "minutes": "Minutes",
-      "openSettings": "Open Settings",
-      "appearance": "Appearance",
-      "behavior": "Behavior",
-      "autoStartPomodoros": "Auto-start Pomodoro Sessions",
-      "autoStartBreaks": "Auto-start Breaks",
-      "sound": "Sound",
-      "soundOn": "Sound On",
-      "volume": "Volume",
-      "timerDurations": "Timer Durations",
-      "pomodoro": "Pomodoro",
-      "shortBreak": "Short Break",
-      "longBreak": "Long Break",
-      "longBreakInterval": "Long Break Interval"
-
-    }
+  "languageToggle": "Toggle language",
+  "timer": {
+    "title": "Timer",
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Reset",
+    "focus": "Focus",
+    "shortBreak": "Short Break",
+    "longBreak": "Long Break",
+    "modeSelected": "Mode selector",
+    "remaining": " Remaining time"
+  },
+  "settings": {
+    "title": "Settings",
+    "minutes": "Minutes",
+    "openSettings": "Open Settings",
+    "appearance": "Appearance",
+    "behavior": "Behavior",
+    "autoStartPomodoro": "Auto-start Pomodoro :",
+    "autoStartBreaks": "Auto-start Breaks :",
+    "sound": "Sound",
+    "soundOn": "Sound On :",
+    "volume": "Volume : ",
+    "timerDurations": "Timer Durations",
+    "pomodoro": "Pomodoro :",
+    "shortBreak": "Short Break :",
+    "longBreak": "Long Break :",
+    "longBreakInterval": "Long Break Interval :",
+    "sessions": " sessions",
+    "min": " min"
+  },
+  "stats": {
+    "title": "Statistics",
+    "hint": "Shows total focus time per day over the last week.",
+    "focusTime": "Focus Time",
+    "sessions": "Sessions",
+    "streak": "Current Streak",
+    "minutes": " minutes",
+    "min": "min",
+    "weekly": "Weekly focus"
+  },
+  "todo": {
+    "title": "To-Do List",
+    "all": "All",
+    "active": "Active",
+    "completed": "Completed",
+    "addTaskForm": "Add new todo",
+    "placeholder": "What needs to be done?",
+    "addTask": "Add task",
+    "reorder": "Drag to reorder tasks",
+    "incomplete": "Mark task as incomplete",
+    "complete": "Mark task as complete",
+    "editTodo": "Edit todo",
+    "deleteTask": "Delete {{task}}"
+  }
 }

@@ -44,12 +44,11 @@ export const useSettingsStore = create<SettingsState>()(
       pomodoroDuration: 25,
       shortBreak: 5,
       longBreak: 15,
-
-      longBreakInterval: 4, // NEW — matches pomodoro technique
+      longBreakInterval: 4, // every n pomodoros
 
       // Behavior
-      autoStartBreaks: false,
-      autoStartPomodoro: false,
+      autoStartBreaks: true,
+      autoStartPomodoro: true,
 
       // Audio
       soundOn: true,

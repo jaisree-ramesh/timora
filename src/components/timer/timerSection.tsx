@@ -4,10 +4,12 @@ import { Card } from "../ui/card";
 import { TimerControls } from "./timerControls";
 import { TimerDisplay } from "./timerDisplay";
 import { ModeIndicator } from "./modeIndicator";
+import { useSyncTimer } from "../hooks/syncTimerHook";
 
 export function TimerSection() {
   useTimerTick();
- const { t } = useTranslation();
+  useSyncTimer();
+  const { t } = useTranslation();
 
   return (
     <section aria-labelledby="timer-heading" className="max-w-2xl mx-auto">
@@ -16,7 +18,7 @@ export function TimerSection() {
           id="timer-heading"
           className="mb-4 w-full text-left text-lg font-semibold"
         >
-          {t("timer.title", "Timer")}
+          {t("timer.title")}
         </h2>
 
         <ModeIndicator />

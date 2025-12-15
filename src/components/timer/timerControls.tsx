@@ -14,7 +14,7 @@ export function TimerControls() {
   };
 
   return (
-    <div className="mt-6 flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center gap-3">
       <Button
         variant="outline"
         size="icon"

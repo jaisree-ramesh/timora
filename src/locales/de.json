@@ -1,31 +1,57 @@
 {
-    "languageToggle": "Sprache wechseln",
-    "timer": {
-        "title": "Timer",
-        "start": "Starten",
-        "pause": "Pause",
-        "reset": "Zurücksetzen",
-        "focus": "Fokus",
-        "shortBreak": "Kurze Pause",
-        "longBreak": "Lange Pause",
-        "modeSelected": "Modusauswahl",
-        "remaining":" Verbleibende Zeit"
-    },
-    "settings": {
-      "title": "Einstellungen",
-      "minutes": "Minuten",
-      "openSettings": "Einstellungen öffnen",
-      "appearance": "Aussehen",
-      "behavior": "Verhalten",
-      "autoStartPomodoros": "Pomodoro-Sitzungen automatisch starten",
-      "autoStartBreaks": "Pausen automatisch starten",
-      "sound": "Sound",
-      "soundOn": "Sound an",
-      "volume": "Lautstärke",
-      "timerDurations": "Timer-Dauern",
-      "pomodoro": "Pomodoro",
-      "shortBreak": "Kurze Pause",
-      "longBreak": "Lange Pause",
-      "longBreakInterval": "Intervall für lange Pausen"
-    }
+  "languageToggle": "Sprache wechseln",
+  "timer": {
+    "title": "Timer",
+    "start": "Starten",
+    "pause": "Pause",
+    "reset": "Zurücksetzen",
+    "focus": "Fokus",
+    "shortBreak": "Kurze Pause",
+    "longBreak": "Lange Pause",
+    "modeSelected": "Modusauswahl",
+    "remaining": " Verbleibende Zeit"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "minutes": "Minuten",
+    "openSettings": "Einstellungen öffnen",
+    "appearance": "Aussehen",
+    "behavior": "Verhalten",
+    "autoStartPomodoro": "Pomodoro-Sitzungen automatisch starten :",
+    "autoStartBreaks": "Pausen automatisch starten :",
+    "sound": "Sound",
+    "soundOn": "Sound an :",
+    "volume": "Lautstärke :",
+    "timerDurations": "Timer-Dauern",
+    "pomodoro": "Pomodoro :",
+    "shortBreak": "Kurze Pause :",
+    "longBreak": "Lange Pause :",
+    "longBreakInterval": "Langes Pausenintervall :",
+    "sessions": " Sitzungen",
+    "min": " Min"
+  },
+  "stats": {
+    "title": "Statistiken",
+    "hint": "Zeigt die gesamte Fokuszeit pro Tag der letzten Woche an.",
+    "focusTime": "Fokuszeit",
+    "sessions": "Sitzungen",
+    "streak": "Aktuelle Serie",
+    "minutes": " Minuten",
+    "min": "min",
+    "weekly": "Wöchentlicher Fokus"
+  },
+  "todo": {
+    "title": "To-Do-Liste",
+    "all": "Alle",
+    "active": "Aktiv",
+    "completed": "Abgeschlossen",
+    "addTaskForm": "Neues To-Do hinzufügen",
+    "placeholder": "Was muss erledigt werden?",
+    "addTask": "Aufgabe hinzufügen",
+    "reorder": "Ziehen zum Neuordnen der Aufgaben",
+    "incomplete": "Aufgabe als unvollständig markieren",
+    "complete": "Aufgabe als abgeschlossen markieren",
+    "editTodo": "To-Do bearbeiten",
+    "deleteTask": "{{task}} löschen"
+  }
 }

@@ -4,6 +4,8 @@ import { TimerSection } from "./components/timer/timerSection";
 import { SettingsDialog } from "./components/settings/settingsDialog";
 import { useSettingsStore } from "./stores/settingStore";
 import { useEffect } from "react";
+import { StatsSection } from "./components/stats/statsSection";
+import { TodoSection } from "./components/todo/todoSection";
 
 function App() {
   useEffect(() => {
@@ -23,29 +25,18 @@ function App() {
       </header>
 
       {/* MAIN */}
-      <main className="max-w-2xl mx-auto p-6 space-y-8">
-        {/* Timer Section */}
-        <section id="timer">
-          <TimerSection />
-        </section>
-
-        {/* Todo Section */}
-        <section id="todos">
-          <div className="bg-card p-6 rounded-md shadow-sm border border-border">
-            <h2 className="text-lg font-medium mb-2">To-Do List</h2>
-            {/* TodoList component will go here */}
-            Work in progress...
+      <main className="min-h-[calc(100vh-4rem)] p-6 flex">
+        <div className="grid gap-6 lg:grid-cols-3 lg:gap-8 my-auto w-full">
+          <div className="lg:col-span-1 ">
+            <TimerSection />
           </div>
-        </section>
-
-        {/* Stats Section */}
-        <section id="stats">
-          <div className="bg-card p-6 rounded-md shadow-sm border border-border">
-            <h2 className="text-lg font-medium mb-2">Stats</h2>
-            {/* StatsSummary will go here */}
-            Work in progress...
+          <div className="lg:col-span-2 space-y-6  max-h-[500px] overflow-y-auto">
+            <TodoSection />
           </div>
-        </section>
+          <div className="lg:col-span-3 space-y-6">
+            <StatsSection />
+          </div>
+        </div>
       </main>
     </div>
   );
