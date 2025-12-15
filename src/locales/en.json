@@ -52,6 +52,11 @@
     "incomplete": "Mark task as incomplete",
     "complete": "Mark task as complete",
     "editTodo": "Edit todo",
-    "deleteTask": "Delete {{task}}"
+    "deleteTask": "Delete {{task}}",
+    "shortcuts": "Shortcuts",
+    "shortcutEdit": "Edit selected todo",
+    "shortcutDelete": "Delete selected todo",
+    "shortcutCancel":" Cancel editing",
+    "shortcutReorder": "Reorder tasks"
   }
 }

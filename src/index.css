@@ -1,8 +1,10 @@
 @import "tailwindcss";
 @import "tailwindcss/theme";
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
 
 @layer base {
  :root {
+   --font-sans: "Nova Square", system-ui, sans-serif;
   --radius: 12px;
   --background: #ffd0ae; /* soft warm cream */
   --foreground: #331a00; /* deep warm brown */
@@ -69,8 +71,8 @@
   --secondary: #e1d8f7; /* Lavender */
   --secondary-foreground: #4a3b6d;
   --muted: #d7c8f3; /* Periwinkle */
-  --muted-foreground: #4a3b6d
-  --accent: #d0bef2; /* Periwinkle */
+  --muted-foreground: #4a3b6d;
+  --accent: #d0bef2;
   --accent-foreground: #3a1d5e;
   --border: #d7c8f3;
   --input: #d7c8f3;

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useTodoActions, useTodos } from "@/stores/todoStore";
-import { useTodoUi } from "@/stores/todoUiStore";
+import { useTodoActions, useTodos } from "../../stores/todoStore";
+import { useTodoUi } from "../../stores/todoUiStore";
 
 export function useTodoShortcuts(opts: { beginEdit: () => void }) {
   const todos = useTodos();
   const { selectedId } = useTodoUi();
-  const { deleteTodo } = useTodoActions();
+  const { deleteTodo, toggleTodo } = useTodoActions();
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -16,28 +16,31 @@ export function useTodoShortcuts(opts: { beginEdit: () => void }) {
         target?.getAttribute("contenteditable") === "true";
 
       if (inInput) return;
-
       if (!selectedId) return;
 
       const exists = todos.some((t) => t.id === selectedId);
       if (!exists) return;
 
-      // E -> edit
+      // Edit
       if (e.key.toLowerCase() === "e") {
         e.preventDefault();
         opts.beginEdit();
         return;
       }
 
-      // Delete / Backspace -> delete
-      if (e.key === "Delete" || e.key === "Backspace") {
+      // Toggle complete
+      if (e.key === " ") {
         e.preventDefault();
-        deleteTodo(selectedId);
+        toggleTodo(selectedId);
         return;
       }
 
-      // Cmd/Ctrl + Backspace -> delete
-      if ((e.metaKey || e.ctrlKey) && e.key === "Backspace") {
+      // Delete
+      if (
+        e.key === "Delete" ||
+        e.key === "Backspace" ||
+        ((e.metaKey || e.ctrlKey) && e.key === "Backspace")
+      ) {
         e.preventDefault();
         deleteTodo(selectedId);
       }
@@ -45,5 +48,5 @@ export function useTodoShortcuts(opts: { beginEdit: () => void }) {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [selectedId, todos, deleteTodo, opts]);
+  }, [selectedId, todos, deleteTodo, toggleTodo, opts]);
 }

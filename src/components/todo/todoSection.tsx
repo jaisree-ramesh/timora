@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { useTodoShortcuts } from "./useTodoShortcuts";
+import { useTodoShortcuts } from "../hooks/todoShortcutsHook";
 import { useTodoUiActions } from "../../stores/todoUiStore";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { TodoFilters } from "./todoFilters";
 import { TodoInput } from "./todoInput";
 import { TodoList } from "./todoList";
+import { TodoShortcutsHelp } from "./todoShortcutsHelp";
 
 export function TodoSection() {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ export function TodoSection() {
         <CardHeader className="pb-3">
           <CardTitle id="todo-heading" className="text-lg font-semibold">
             {t("todo.title")}
+            <TodoShortcutsHelp />
           </CardTitle>
 
           <div className="pt-2">

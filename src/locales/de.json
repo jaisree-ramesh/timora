@@ -52,6 +52,11 @@
     "incomplete": "Aufgabe als unvollständig markieren",
     "complete": "Aufgabe als abgeschlossen markieren",
     "editTodo": "To-Do bearbeiten",
-    "deleteTask": "{{task}} löschen"
+    "deleteTask": "{{task}} löschen",
+    "shortcuts": "Tastenkürzel",
+    "shortcutEdit": "Ausgewähltes To-Do bearbeiten",
+    "shortcutDelete": "Ausgewähltes To-Do löschen",
+    "shortcutCancel": " Bearbeitung abbrechen",
+    "shortcutReorder": "Aufgaben neu anordnen"
   }
 }
